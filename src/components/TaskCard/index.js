@@ -15,10 +15,22 @@ export const TaskCard = styled.div`
     padding: .5rem 1rem;
 
     input[type="checkbox"] {
+        color: var(--white);
         margin-right: .5rem;
     }
 
-    .is-finished {
-        text-decoration: line-through;
+    .div-aux {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .finished {
+        background-color: var(--light-green);
+    }
+
+    .finished::before {
+        content: "✔";
+        color: var(--white);
     }
 `

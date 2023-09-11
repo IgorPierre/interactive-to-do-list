@@ -6,6 +6,9 @@ import { TaskContainer } from './components/TaskContainer'
 import { useState } from 'react'
 import { TaskCard } from './components/TaskCard'
 import { TrashButton } from './components/Buttons/TrashButton'
+import { FinishButton } from './components/Buttons/FinishButton'
+import { TaskForm } from './components/TaskForm'
+import { AddTaskButton } from './components/Buttons/AddTaskButton'
 
 function App() {
 
@@ -37,14 +40,22 @@ function App() {
   return (
     <>
       <TaskContainer>
+        <TaskForm>
+          <input type="text" placeholder='Nova tarefa'/>
+          <AddTaskButton type="submit">ADICIONAR</AddTaskButton>
+        </TaskForm>
         {tasks.map((task) => (
           <TaskCard key={task.id}>
-            <button onClick={() => finishedTask(task.id)}>
-                conluir
-            </button>
-            <span style={{ textDecoration: task.isFinished == true ? 'line-through' : 'none' }} >
-                {task.text}
-            </span>
+            <div className='div-aux'>
+              <FinishButton 
+                onClick={() => finishedTask(task.id)}
+                className={task.isFinished ? 'finished' : ''}
+              >
+              </FinishButton>
+              <span style={{ textDecoration: task.isFinished == true ? 'line-through' : 'none' }} >
+                  {task.text}
+              </span>
+            </div>
             <TrashButton onClick={() => removeTask(task.id)}>
               <LiaTrashAlt />
             </TrashButton>
