@@ -9,6 +9,18 @@ import { TrashButton } from './components/Buttons/TrashButton'
 
 function App() {
 
+  const finishedTask = (id) => {
+    const newTasks = [...tasks]
+    newTasks.map((task) => task.id === id ? task.isFinished = !task.isFinished : task)
+    setTasks(newTasks)
+  }
+
+  const removeTask = (id) => {
+    const newTasks = [...tasks]
+    const filteredTasks = newTasks.filter(task => task.id !== id ? task : null)
+    setTasks(filteredTasks)
+  }
+
   const [tasks, setTasks] = useState([
     {
       id: 1,
@@ -21,26 +33,19 @@ function App() {
       isFinished: true,
     },
   ])
-
-  const [checked, setChecked] = useState("checked");
-
-  const handleCheckboxChange = (value) => {
-    return (!value);
-  };
-
+  
   return (
     <>
       <TaskContainer>
         {tasks.map((task) => (
-          <TaskCard>
-            <label htmlFor="">
-              <input 
-                type="checkbox"
-                checked={checked}
-              />
-              <span className={task.isFinished === true ? "is-finished" : ""} >{task.text}</span>
-            </label>
-            <TrashButton>
+          <TaskCard key={task.id}>
+            <button onClick={() => finishedTask(task.id)}>
+                conluir
+            </button>
+            <span style={{ textDecoration: task.isFinished == true ? 'line-through' : 'none' }} >
+                {task.text}
+            </span>
+            <TrashButton onClick={() => removeTask(task.id)}>
               <LiaTrashAlt />
             </TrashButton>
           </TaskCard>
