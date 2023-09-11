@@ -12,6 +12,29 @@ import { AddTaskButton } from './components/Buttons/AddTaskButton'
 
 function App() {
 
+  const [text, setText] = useState("")
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if(!text) 
+      return
+    addTask(text)
+    setText("")
+  }
+
+  const addTask = (text) => {
+    const newTasks = [
+      ...tasks,
+      {
+        id: Math.floor(Math.random() * 10000),
+        text,
+        isFinished: false,
+      }
+    ]
+    setTasks(newTasks)
+
+  } 
   const finishedTask = (id) => {
     const newTasks = [...tasks]
     newTasks.map((task) => task.id === id ? task.isFinished = !task.isFinished : task)
@@ -38,12 +61,19 @@ function App() {
   ])
   
   return (
-    <>
+    <div className="container">
+      <TaskForm onSubmit={handleSubmit}>
+        <input 
+          type="text" 
+          placeholder='Nova tarefa' 
+          onChange={(e) => setText(e.target.value)}
+          value={text}
+        />
+        <AddTaskButton 
+          type="submit"
+        >ADICIONAR</AddTaskButton>
+      </TaskForm>
       <TaskContainer>
-        <TaskForm>
-          <input type="text" placeholder='Nova tarefa'/>
-          <AddTaskButton type="submit">ADICIONAR</AddTaskButton>
-        </TaskForm>
         {tasks.map((task) => (
           <TaskCard key={task.id}>
             <div className='div-aux'>
@@ -62,7 +92,7 @@ function App() {
           </TaskCard>
         ))}
       </TaskContainer>
-    </>
+    </div>
   )
 }
 
