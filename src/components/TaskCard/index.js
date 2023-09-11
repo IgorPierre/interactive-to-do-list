@@ -14,7 +14,11 @@ export const TaskCard = styled.div`
     margin: .8rem;
     padding: .5rem 1rem;
 
-    input[type="checkbox"] {
+    & span::first-letter {
+        text-transform: uppercase;
+    }
+
+    & input[type="checkbox"] {
         color: var(--white);
         margin-right: .5rem;
     }
