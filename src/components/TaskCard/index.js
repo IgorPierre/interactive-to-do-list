@@ -30,7 +30,7 @@ export const TaskCard = styled.div`
     }
 
     .finished {
-        background-color: var(--light-green);
+        background-color: var(--green);
     }
 
     .finished::before {
