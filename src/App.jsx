@@ -8,7 +8,9 @@ import { TaskCard } from './components/TaskCard'
 import { TrashButton } from './components/Buttons/TrashButton'
 import { FinishButton } from './components/Buttons/FinishButton'
 import { TaskForm } from './components/TaskForm'
-import { AddTaskButton } from './components/Buttons/AddTaskButton'
+import { DefaultButton } from './components/Buttons/DefaultButton'
+import { InputBar } from './components/InputBar'
+import SearchTask from './components/SearchTask'
 
 function App() {
 
@@ -47,6 +49,8 @@ function App() {
     setTasks(filteredTasks)
   }
 
+  const [search, setSearch] = useState('')
+
   const [tasks, setTasks] = useState([
     {
       id: 1,
@@ -60,37 +64,53 @@ function App() {
     },
   ])
   
+
   return (
     <div className="container">
       <TaskForm onSubmit={handleSubmit}>
-        <input 
+        <InputBar 
           type="text" 
           placeholder='Nova tarefa' 
           onChange={(e) => setText(e.target.value)}
           value={text}
         />
-        <AddTaskButton 
+        <DefaultButton 
           type="submit"
-        >ADICIONAR</AddTaskButton>
+          customContent="+"
+          primary
+        >ADICIONAR</DefaultButton>
       </TaskForm>
+      <SearchTask search={search} setSearch={setSearch} />
       <TaskContainer>
-        {tasks.map((task) => (
-          <TaskCard key={task.id}>
-            <div className='div-aux'>
-              <FinishButton 
-                onClick={() => finishedTask(task.id)}
-                className={task.isFinished ? 'finished' : ''}
-              >
-              </FinishButton>
-              <span style={{ textDecoration: task.isFinished == true ? 'line-through' : 'none' }} >
-                  {task.text}
-              </span>
-            </div>
-            <TrashButton onClick={() => removeTask(task.id)}>
-              <LiaTrashAlt />
-            </TrashButton>
-          </TaskCard>
-        ))}
+        {tasks
+          .filter((task) => 
+            task.text.toLowerCase().includes(search.toLowerCase())
+          )
+          .map((task) =>
+          (
+            <TaskCard key={task.id}>
+              <div className='div-aux'>
+                <FinishButton 
+                  onClick={() => finishedTask(task.id)}
+                  className={task.isFinished ? 'finished' : ''}
+                >
+                </FinishButton>
+                <span style={{ textDecoration: task.isFinished == true ? 'line-through' : 'none' }} >
+                    {task.text}
+                </span>
+              </div>
+              <TrashButton onClick={() => removeTask(task.id)}>
+                <LiaTrashAlt />
+              </TrashButton>
+            </TaskCard>
+          ))
+        }
+
+        {tasks.filter((task) => 
+            task.text.toLowerCase().includes(search.toLowerCase())
+          ).length === 0 && (
+          <div>Nenhuma task encontrada</div>
+        )}
       </TaskContainer>
     </div>
   )
