@@ -1,10 +1,15 @@
 import './App.css'
+
+//Data
 import TasksData from '../Data/TasksData'
+
+//Icons
 import { LiaTrashAlt } from 'react-icons/lia'
 import { LuAlertTriangle } from 'react-icons/lu'
 import { ImSearch } from 'react-icons/im'
 import { BiCopyright } from 'react-icons/bi'
 
+//Components
 import { FilterArea } from './components/FilterArea'
 import { TaskContainer } from './components/TaskContainer'
 import { TaskCard } from './components/TaskCard'
@@ -13,6 +18,8 @@ import { InputBar } from './components/InputBar'
 import SearchTask from './components/SearchTask'
 import { CopyrightSpan, Title } from './components/Title'
 import { DefaultButton, FinishButton, TrashButton } from './components/Buttons/Buttons'
+
+//Hooks
 import { useState, useEffect } from 'react'
 
 function App() {
