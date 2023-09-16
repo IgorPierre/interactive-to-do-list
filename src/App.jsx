@@ -1,20 +1,33 @@
 import './App.css'
 
-import { LiaTrashAlt } from 'react-icons/lia'
+//Data
+import TasksData from '../Data/TasksData'
 
+//Icons
+import { LiaTrashAlt } from 'react-icons/lia'
+import { LuAlertTriangle } from 'react-icons/lu'
+import { ImSearch } from 'react-icons/im'
+
+//Components
+import { FilterArea } from './components/FilterArea'
 import { TaskContainer } from './components/TaskContainer'
-import { useState } from 'react'
 import { TaskCard } from './components/TaskCard'
-import { TrashButton } from './components/Buttons/TrashButton'
-import { FinishButton } from './components/Buttons/FinishButton'
 import { TaskForm } from './components/TaskForm'
-import { DefaultButton } from './components/Buttons/DefaultButton'
 import { InputBar } from './components/InputBar'
 import SearchTask from './components/SearchTask'
+import { Title } from './components/Title'
+import { DefaultButton, FinishButton, TrashButton } from './components/Buttons/Buttons'
+
+//Hooks
+import { useState } from 'react'
 
 function App() {
 
   const [text, setText] = useState("")
+
+  const [search, setSearch] = useState('')
+
+  const [tasks, setTasks] = useState([...TasksData])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -49,24 +62,10 @@ function App() {
     setTasks(filteredTasks)
   }
 
-  const [search, setSearch] = useState('')
-
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      text: "Tirar o lixo",
-      isFinished: false,
-    },
-    {
-      id: 2,
-      text: "Comprar pão",
-      isFinished: true,
-    },
-  ])
-  
-
   return (
     <div className="container">
+      <Title>Interactive To-Do List</Title>
+
       <TaskForm onSubmit={handleSubmit}>
         <InputBar 
           type="text" 
@@ -80,7 +79,12 @@ function App() {
           primary
         >ADICIONAR</DefaultButton>
       </TaskForm>
-      <SearchTask search={search} setSearch={setSearch} />
+
+      <FilterArea>
+        <ImSearch />
+        <SearchTask search={search} setSearch={setSearch} />
+      </FilterArea>
+
       <TaskContainer>
         {tasks
           .filter((task) => 
@@ -108,8 +112,10 @@ function App() {
 
         {tasks.filter((task) => 
             task.text.toLowerCase().includes(search.toLowerCase())
-          ).length === 0 && (
-          <div>Nenhuma task encontrada</div>
+          ).length === 0 && search != '' && (
+          <div className='not-found-area'>
+            <span><LuAlertTriangle/> Nenhuma task encontrada !!</span>
+          </div>
         )}
       </TaskContainer>
     </div>
