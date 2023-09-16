@@ -25,7 +25,7 @@ Trata-se de uma lista de tarefas onde o usuário pode visualizar, adicionar e ge
 <br>
 
 ## :information_source: Application installation
-- "git clone https://github.com/IgorPierre/locadora_filmes_com_react.git" para clonar o repositório.
+- "git clone https://github.com/IgorPierre/interactive-to-do-list.git" para clonar o repositório.
 
 - "npm install" para instalar as dependências do projeto.
 
