@@ -11,5 +11,6 @@ export const InputBar = styled.input`
 
     &::placeholder {
         color: var(--white);
+        opacity: 0.8;
     }
 `

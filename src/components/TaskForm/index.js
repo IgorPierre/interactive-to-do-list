@@ -7,4 +7,8 @@ export const TaskForm = styled.form`
     width: 50%;
     margin: .8rem;
     margin-bottom: 2rem;
+
+    @media(max-width: 1020px) {
+        width: 80%;
+    }
 `
