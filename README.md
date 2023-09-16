@@ -1,8 +1,34 @@
-# React + Vite
+## **<h2 align="center"> Interactive To-do List 📝</h2>**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## :pushpin: Sobre este projeto:
+Trata-se de uma lista de tarefas onde o usuário pode visualizar, adicionar e gerenciar suas atividades, permitindo filtrar por nome. Foi desenvolvido com ReactJs e Styled-Components, como forma de desafio proposto pelo  time da Loading jr.
 
-Currently, two official plugins are available:
+<br>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## :rocket: Tecnologia usada:
+<p align="center">
+  <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg" alt="react"  width="70" height="70"/>
+</p>
+<br>
+
+## :star: Tela principal da aplicação
+
+<p align="center">
+  <img src="./src/assets/application-screen.jpeg" alt="imagem da aplicação" />
+</p>
+
+<br>
+
+<h3 align="center"> 
+	Application status: Developed ✔️
+</h3>
+<br>
+
+## :information_source: Application installation
+- "git clone https://github.com/IgorPierre/locadora_filmes_com_react.git" para clonar o repositório.
+
+- "npm install" para instalar as dependências do projeto.
+
+- "npm run dev" para rodar o projeto em seu servidor local.
+
+<br>
