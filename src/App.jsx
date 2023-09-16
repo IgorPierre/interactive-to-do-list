@@ -1,14 +1,8 @@
 import './App.css'
-
-//Data
 import TasksData from '../Data/TasksData'
-
-//Icons
 import { LiaTrashAlt } from 'react-icons/lia'
 import { LuAlertTriangle } from 'react-icons/lu'
 import { ImSearch } from 'react-icons/im'
-
-//Components
 import { FilterArea } from './components/FilterArea'
 import { TaskContainer } from './components/TaskContainer'
 import { TaskCard } from './components/TaskCard'
@@ -17,9 +11,7 @@ import { InputBar } from './components/InputBar'
 import SearchTask from './components/SearchTask'
 import { Title } from './components/Title'
 import { DefaultButton, FinishButton, TrashButton } from './components/Buttons/Buttons'
-
-//Hooks
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function App() {
 
@@ -27,7 +19,14 @@ function App() {
 
   const [search, setSearch] = useState('')
 
-  const [tasks, setTasks] = useState([...TasksData])
+  const [tasks, setTasks] = useState(() => {
+    const storedTasks = localStorage.getItem('tasks');
+    return storedTasks ? JSON.parse(storedTasks) : TasksData;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -48,8 +47,8 @@ function App() {
       }
     ]
     setTasks(newTasks)
-
   } 
+
   const finishedTask = (id) => {
     const newTasks = [...tasks]
     newTasks.map((task) => task.id === id ? task.isFinished = !task.isFinished : task)
@@ -122,4 +121,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

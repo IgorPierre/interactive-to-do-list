@@ -1,19 +1,5 @@
 const TasksData = [
-    {
-        id: 1,
-        text: "Tirar o lixo",
-        isFinished: false,
-      },
-      {
-        id: 2,
-        text: "Comprar pão",
-        isFinished: true,
-      },
-      {
-          id: 3,
-          text: "Finalizar a Sprint EV-4",
-          isFinished: false,
-      },
+  //Se ouver uma api poderá armasenar o objeto com as taks nesse arquivo
 ]
 
 export default TasksData
